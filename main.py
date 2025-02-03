@@ -1,32 +1,35 @@
-from graphics import Window, Cell
+from graphics import Window
+from cell import Cell
 
 
 def main():
     win = Window(800, 600)
 
-    # Create and draw cells with different wall configurations
-    cell1 = Cell(win)
-    cell1.draw(50, 50, 150, 150)  # All walls
+    c1 = Cell(win)
+    c1.has_right_wall = False
+    c1.draw(50, 50, 100, 100)
 
-    cell2 = Cell(win)
-    cell2.has_left_wall = False
-    cell2.has_top_wall = False
-    cell2.draw(200, 50, 300, 150)  # Missing left and top walls
+    c2 = Cell(win)
+    c2.has_left_wall = False
+    c2.has_bottom_wall = False
+    c2.draw(100, 50, 150, 100)
 
-    cell3 = Cell(win)
-    cell3.has_right_wall = False
-    cell3.has_bottom_wall = False
-    cell3.draw(350, 50, 450, 150)  # Missing right and bottom walls
+    c1.draw_move(c2)
 
-    cell4 = Cell(win)
-    cell4.has_left_wall = False
-    cell4.has_right_wall = False
-    cell4.has_top_wall = False
-    cell4.has_bottom_wall = False
-    cell4.draw(500, 50, 600, 150)  # No walls
+    c3 = Cell(win)
+    c3.has_top_wall = False
+    c3.has_right_wall = False
+    c3.draw(100, 100, 150, 150)
+
+    c2.draw_move(c3)
+
+    c4 = Cell(win)
+    c4.has_left_wall = False
+    c4.draw(150, 100, 200, 150)
+
+    c3.draw_move(c4, True)
 
     win.wait_for_close()
 
 
-if __name__ == "__main__":
-    main()
+main()
